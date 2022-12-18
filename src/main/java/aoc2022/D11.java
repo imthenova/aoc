@@ -10,16 +10,27 @@ import java.util.Arrays;
 import java.util.List;
 
 public class D11 {
-    static String PATH = "C:\\Users\\imthe\\Documents\\aoc\\input"+"2";
+    static String PATH = "/Users/marmao/Documents/input"+"2";
+    public static List<MoneyBO> moneyBOS = new ArrayList<>();
     public static void main(String[] args) throws IOException {
         String content = FileUtils.readFileToString(new File(PATH));
-        List<String> roundList = Arrays.stream(content.split("\r\n\r\n")).toList();
-        List<MoneyBO> moneyBOS = new ArrayList<>();
+        List<String> roundList = Arrays.stream(content.split("\n\n")).toList();
         for (int i = 0; i < roundList.size(); i++) {
-            MoneyBO moneyBO = new MoneyBO(roundList.get(0));
+            MoneyBO moneyBO = new MoneyBO(roundList.get(i));
             moneyBOS.add(moneyBO);
         }
-        System.out.println(moneyBOS);
+        for (int j = 0; j < 400; j++) {
+            for (int i = 0; i < moneyBOS.size(); i++) {
+                moneyBOS.get(i).test();
+            }
+            for (int i = 0; i < moneyBOS.size(); i++) {
+                System.out.println("Monkey "+i+": "+moneyBOS.get(i));
+            }
+        }
+
+        for (int i = 0; i < moneyBOS.size(); i++) {
+            System.out.println("Monkey "+i+": "+moneyBOS.get(i).inspectTimes);
+        }
     }
 
 
