@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 public class D8 {
-    static String PATH = "C:\\Users\\imthe\\Documents\\aoc\\input.txt";
+    static String PATH = "/Users/marmao/Documents/aoc/input";
     static int LENGTH = 6;
     public static void main(String[] args) throws IOException {
         String content = FileUtils.readFileToString(new File(PATH));
-        List<String> strList = Arrays.stream(content.split("\r\n")).toList();
+        List<String> strList = Arrays.stream(content.split("\n")).toList();
         String instractionStr = strList.get(0);
         char[] instractionStrCharArray = instractionStr.toCharArray();
         Map<String, MapInstruction> mapInstructionMap = new HashMap<>();
@@ -63,7 +63,7 @@ public class D8 {
 //                System.out.print(nextMapIntractions[j] + " " + instractionStrCharArray[i] + ",");
             }
 //            System.out.println();
-            isOneArrive(nextMapIntractions);
+            isOneArrive(nextMapIntractions,count);
             i++;
             if (i == instractionStrCharArray.length) {
                 i = 0;
@@ -80,18 +80,22 @@ public class D8 {
         }
         return true;
     }
-    private static void isOneArrive(MapInstruction[] nextMapIntractions){
+    private static void isOneArrive(MapInstruction[] nextMapIntractions,int times){
         int count=0;
         for (int i = 0; i < nextMapIntractions.length; i++) {
             if(nextMapIntractions[i].isArrive()){
                 count++;
+                if(i==5){
+                    System.out.println("第"+i+"个：" + times);
+                }
+
             }
         }
-        if(count>3){
-            for (int j = 0; j < nextMapIntractions.length; j++) {
-                System.out.print(nextMapIntractions[j].getName() + ",");
-            }
-            System.out.println();
-        }
+//        if(count>3){
+//            for (int j = 0; j < nextMapIntractions.length; j++) {
+//                System.out.print(nextMapIntractions[j].getName() + ",");
+//            }
+//            System.out.println();
+//        }
     }
 }
