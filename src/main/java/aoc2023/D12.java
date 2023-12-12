@@ -9,12 +9,12 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class D12 {
-    static String PATH = "/Users/marmao/Documents/aoc/input";
+    static String PATH = "C:\\Users\\imthe\\Documents\\aoc\\input.txt";
     static BigInteger COUNT = BigInteger.valueOf(0);
     static int eachCount = 0;
     public static void main(String[] args) throws IOException {
         String content = FileUtils.readFileToString(new File(PATH));
-        List<String> strList = Arrays.stream(content.split("\n")).toList();
+        List<String> strList = Arrays.stream(content.split("\r\n")).toList();
         D12 game = new D12();
         List<Integer> eachCountList = new ArrayList<>();
         List<Integer> unfoldedCountList = new ArrayList<>();
