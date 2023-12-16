@@ -24,7 +24,7 @@ public class D12 {
             eachCount = 0;
             game.generateCombinations(rawRow,0,"");
             eachCountList.add(eachCount);
-
+//            System.out.println(eachCount);
             rawRow = game.unfold(rawRow);
 //            System.out.println(rawRow);
             eachCount = 0;
@@ -58,7 +58,25 @@ public class D12 {
         }
         return true;
     }
-
+    public boolean cannotValidate(String input, int index, String current){
+        String newInput = current+input.substring(index);
+        String[] parts = newInput.split(" ");
+        String content = parts[0];
+        String countableContent = newInput.indexOf('?')==-1 ? content : content.substring(0,newInput.indexOf('?'));
+        String amount = parts[1];
+        String[] contentList = Arrays.stream(countableContent.split("\\.")).filter(s->!s.isEmpty()).toArray(String[]::new);
+        String[] amountList = amount.split(",");
+        if (contentList.length > amountList.length){
+            return true;
+        } else{
+            for (int i = 0; i < contentList.length; i++) {
+                if(contentList[i].length() > Integer.parseInt(amountList[i]) ){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public void generateCombinations(String input, int index, String current) {
         if (index == input.length()) {
             if(validate(current)){
@@ -68,7 +86,9 @@ public class D12 {
             }
             return;
         }
-
+        if(index>0 && cannotValidate(input,index,current)){
+            return;
+        }
         if (input.charAt(index) == '?') {
             generateCombinations(input, index + 1, current + '.');
             generateCombinations(input, index + 1, current + '#');

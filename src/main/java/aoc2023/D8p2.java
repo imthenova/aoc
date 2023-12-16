@@ -14,7 +14,7 @@ import java.util.Map;
 public class D8p2 {
     public static void main(String[] args) throws IOException {
         BigInteger[] bigIntegers = {new BigInteger("32542"),new BigInteger("48506"),new BigInteger("26402"),new BigInteger("28858"),new BigInteger("36226"),new BigInteger("44822")};
-        BigInteger[] bigDiffs = {new BigInteger("16271"),new BigInteger("24253"),new BigInteger("13201"),new BigInteger("14429"),new BigInteger("18113"),new BigInteger("22411")};
+        BigInteger[] bigDiffs = {new BigInteger("16324"),new BigInteger("24332"),new BigInteger("13244"),new BigInteger("14476"),new BigInteger("18172"),new BigInteger("22484")};
         String str = ".###...##..#";
         String[] strs = Arrays.stream(str.split("\\.")).filter(s->!s.isEmpty()).toArray(String[]::new);
         System.out.println(Arrays.toString(strs));
